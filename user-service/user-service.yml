@@ -1,0 +1,16 @@
+logging:
+  config: "classpath:log4j2.yml"  
+  # pattern:
+  #   console: "[%d{DATE}][%-5p][%c{1},%t] - %m%n"
+  # level: 
+  #   '[org.springframework]': info
+  #   '[org.jpop8]': debug
+  #   '[org.hibernate]': info
+  #   root: info
+
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2    
+

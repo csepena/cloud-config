@@ -1,0 +1,9 @@
+server:
+  port: 1001
+  servlet:
+    context-path: '/book-service'
+
+logging:
+  config: "classpath:log4j2.yml"
+  # level:
+  #   root: info        # default level

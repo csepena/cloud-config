@@ -1,0 +1,30 @@
+Configuration:
+  Properties:
+    Property:
+      name: logPattern
+      value: '[%d{DATE}][%-5p][%c{1},%t] - %m%n'
+
+    Appenders:
+      Console:
+        name: "CONSOLE"
+        target: SYSTEM_OUT
+        PatternLayout:
+          Pattern: ${logPattern}
+
+    Loggers:
+      Logger:
+        - name: org.jpop8
+          level: debug
+          additivity: false
+          AppenderRef:
+            ref: CONSOLE
+        - name: org.springframework.boot
+          level: info
+          additivity: false
+          AppenderRef:
+            ref: CONSOLE
+        
+      Root:
+        level: info
+        AppenderRef:
+          ref: CONSOLE

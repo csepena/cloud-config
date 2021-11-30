@@ -1,0 +1,57 @@
+Configuration:
+  Properties:
+    Property:
+      - name: date_pattern
+        value: "[%d{DATE}][%-5p][%c{1},%t] - %m%n"
+      - name: log_location
+        value: ./logs/user-service
+
+  Appenders:
+    Console:
+      name: console_out
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: ${date_pattern}
+
+    RollingFile:
+      name: file_out
+      fileName: ${log_location}/user-service.log
+      filePattern: ${log_location}/user-service_%i.log.gz
+      ignoreExceptions: false
+      append: true
+      PatternLayout:
+        pattern: ${date_pattern}
+      Policies:
+        SizeBasedTriggeringPolicy: 
+          size: 10MB
+      DefaultRolloverStrategy:
+        max: 3
+
+  Loggers:
+    Logger:
+      - name: org.jpop8
+        level: debug
+        additivity: false
+        AppenderRef:
+          - ref: console_out
+          - ref: file_out
+
+      - name: org.springframework
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: console_out
+          - ref: file_out
+            #level: debug
+
+      - name: org.hibernate
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: console_out
+          - ref: file_out          
+      
+    Root:
+      level: info
+      AppenderRef:
+        - ref: console_out
